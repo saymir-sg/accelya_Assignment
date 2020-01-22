@@ -1,0 +1,39 @@
+<section class="common_section gif_search_section">
+  <div class="content_box">
+      <h2 class="title">Gif Search</h2>
+      <form>
+          <div class="form_group">
+              <input type="text" class="form_input" placeholder="What are you looking for?" [(ngModel)]="searchText" name="search_text">
+              <span class="select_dropdwon">
+                  <select name="search_type" [(ngModel)]="searchType">
+                      <option value="all">Show All</option>
+                  </select>
+              </span>
+              <span class="btn_wrap">
+                  <button (click)="search()" class="btn btn_search"><i class="fa fa-search"></i></button>
+              </span>
+          </div>
+          <div class="error_div" *ngIf="isError && !searchText">Please enter some text to search</div>
+      </form>
+      <h4 class="">You can search any gif with our search</h4>
+      <p class="txt">Everything you need for your creative projects. websites, banners, presentations, magazines and advertising.</p>
+  </div>
+</section>
+
+<section class="common_section" id="imagesWrapper">
+  <div class="section_inner">
+      <div class="loading_wrapper" *ngIf="isLoading">
+          Loading Images...
+      </div>
+      <div class="masonary_gal" *ngIf="images">
+          <div *ngFor="let image of images" class="masonary_item">
+              <img [src]="image.images.original.url">
+          </div>
+      </div>
+      <div *ngIf="!images && !isLoading">
+          <h4 class="no_data_wrapper">Please search gif with our search</h4>
+      </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
